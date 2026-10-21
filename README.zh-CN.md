@@ -56,6 +56,16 @@
 
 适用于 **Syncthing v2.x**（在 v2.1.6 上实测）。主题是“稀疏”资产覆盖——只提供 `theme.css` 与字体，其余文件自动回退内置默认主题，因此 **Syncthing 升级不会使其失效**，也**不修改任何 Syncthing 文件**。
 
+### 截图预览
+
+| 主页 | 设置 |
+|:---:|:---:|
+| ![主页](webui-theme/screenshots/home.png) | ![设置](webui-theme/screenshots/settings.png) |
+
+| 设备标识 |
+|:---:|
+| ![设备标识](webui-theme/screenshots/device-id.png) |
+
 **安装步骤**：
 
 1. 把 `webui-theme` 文件夹整个复制到任意位置，例如 `C:\syncthing-webui-theme`（保持其中的 `modern` 子目录结构）。

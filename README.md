@@ -10,6 +10,8 @@
 > * **Bundled WebUI theme** — a `modern` theme for the Syncthing web GUI (see [WebUI Theme](#webui-theme-modern) below), self-hosted HarmonyOS Sans SC font included
 >
 > Requires **Inno Setup 6.7.3+** to build (see [building.md](building.md)). Builds from this fork are unofficial; always obtain official installers from the upstream project.
+>
+> **[简体中文说明（安装、主题、构建）](README.zh-CN.md)**
 
 Syncthing Windows Setup is a lightweight yet full-featured Windows installer for the open-source [Syncthing](https://syncthing.net) file-synchronization application.
 
@@ -20,6 +22,16 @@ Syncthing Windows Setup is a lightweight yet full-featured Windows installer for
 The [`webui-theme/`](webui-theme/) folder contains a **custom light theme for the Syncthing web GUI** (`http://127.0.0.1:8384`): white rounded cards on a soft gray-blue page, Syncthing brand-blue accents (`#0891D1`), modern tabs/inputs, and the open-source **HarmonyOS Sans SC** typeface (Apache-2.0, bundled in `webui-theme/modern/assets/fonts/`) so Chinese and Latin text render consistently.
 
 Compatible with **Syncthing v2.x** (tested on v2.1.6). The theme is a *sparse* asset override — only `theme.css` and fonts are provided; everything else falls back to the built-in default theme, so Syncthing upgrades won't break it.
+
+### Screenshots
+
+| Home | Settings |
+|:---:|:---:|
+| ![Home](webui-theme/screenshots/home.png) | ![Settings](webui-theme/screenshots/settings.png) |
+
+| Device Identification |
+|:---:|
+| ![Device ID](webui-theme/screenshots/device-id.png) |
 
 ### Install the theme
 
