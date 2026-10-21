@@ -1,0 +1,12 @@
+# build output
+syncthing-windows-setup-*.exe
+
+# third-party build-time binaries (download per building.md)
+binaries/
+
+# local helper material, not part of the project
+downloads/
+st-gui-src/
+.workbuddy/
+__pycache__/
+*.pyc

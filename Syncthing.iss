@@ -1,5 +1,15 @@
 ; Syncthing.iss - Syncthing Windows Setup
 ; Written by Bill Stewart (bstewart AT iname.com) for Syncthing
+;
+; Modified fork (unofficial): https://github.com/zryadj/SyncthingWindowsSetup
+; Changes vs upstream:
+;   * Polar visual theme (WizardStyle=modern dynamic polar) + custom
+;     Syncthing wizard artwork (syncthing-wizard-*.png, light/dark variants)
+;   * Simplified Chinese localization (Messages-zh.isl, zh-*.js,
+;     zh-License.rtf, zh-README.rtf) - see build_zh.py
+;   * Per-language license extraction in InitializeWizard (ActiveLanguage)
+; Upstream project: https://github.com/Bill-Stewart/SyncthingWindowsSetup
+; Upstream is licensed MPL-2.0; this fork carries the same license.
 
 ; Windows Inno Setup installer for Syncthing (https://syncthing.net/)
 ; * see LICENSE for license
@@ -63,7 +73,11 @@ SolidCompression=yes
 LZMADictionarySize=131072
 LZMANumFastBytes=273
 UsePreviousTasks=yes
-WizardStyle=modern
+WizardStyle=modern dynamic polar
+WizardImageFile=syncthing-wizard-large.png
+WizardSmallImageFile=syncthing-wizard-small.png
+WizardImageFileDynamicDark=syncthing-wizard-large-dark.png
+WizardSmallImageFileDynamicDark=syncthing-wizard-small-dark.png
 WizardSizePercent=120
 UninstallFilesDir={app}\uninstall
 UninstallDisplayIcon={app}\syncthing.ico
@@ -77,12 +91,14 @@ SetupWindowTitle=Syncthing Windows Setup
 
 [Languages]
 Name: "en"; MessagesFile: "compiler:Default.isl,Messages-en.isl"; InfoBeforeFile: "en-README.rtf"
+Name: "zh"; MessagesFile: "compiler:Languages\ChineseSimplified.isl,Messages-zh.isl"; InfoBeforeFile: "zh-README.rtf"
 
 ; See building.md file for localization details
 #define protected
 #define LocalizationFile AddBackslash(SourcePath) + "Localization.ini"
-#dim Languages[1]
+#dim Languages[2]
 #define Languages[0] "en"
+#define Languages[1] "zh"
 
 [Files]
 ; Preprocessor localization
@@ -93,7 +109,7 @@ Name: "en"; MessagesFile: "compiler:Default.isl,Messages-en.isl"; InfoBeforeFile
 #define ScriptNameSetConfig    ReadIni(LocalizationFile, Language, "ScriptNameSetSyncthingConfig")
 #define ScriptNameFirewallRule ReadIni(LocalizationFile, Language, "ScriptNameSyncthingFirewallRule")
 #define ScriptNameLogonTask    ReadIni(LocalizationFile, Language, "ScriptNameSyncthingLogonTask")
-Source: "{#FileNameLicense}"; DestName: "{#LicenseFileName}"; flags: dontcopy
+Source: "{#FileNameLicense}"; DestName: "{#Language}-{#LicenseFileName}"; Flags: dontcopy; Languages: "{#Language}"
 Source: "{#ScriptNameFirewallRule}"; DestDir: "{app}"; DestName: "{#ScriptNameSyncthingFirewallRule}"; Languages: "{#Language}"
 Source: "{#ScriptNameSetConfig}"; DestDir: "{app}"; DestName: "{#ScriptNameSetSyncthingConfig}"; Languages: "{#Language}"
 Source: "{#ScriptNameLogonTask}"; DestDir: "{app}"; DestName: "{#ScriptNameSyncthingLogonTask}"; Languages: "{#language}"; Check: not IsAdminInstallMode()
@@ -591,8 +607,9 @@ var
   LicenseFileText: AnsiString;
 begin
   // Custom memo page(s)
-  ExtractTemporaryFile('{#LicenseFileName}');
-  LicenseOK := LoadStringFromFile(ExpandConstant('{tmp}\{#LicenseFileName}'), LicenseFileText);
+  // (per-language license file, e.g. en-License.rtf / zh-License.rtf)
+  ExtractTemporaryFile(ActiveLanguage + '-' + '{#LicenseFileName}');
+  LicenseOK := LoadStringFromFile(ExpandConstant('{tmp}\') + ActiveLanguage + '-' + '{#LicenseFileName}', LicenseFileText);
   if LicenseOK then
   begin
     OutputMsgMemoPage0 := CreateOutputMsgMemoPage(wpInfoBefore,

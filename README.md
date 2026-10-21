@@ -1,7 +1,48 @@
 <!-- omit in toc -->
 # Syncthing Windows Setup
 
+> **[!NOTE]**
+> **This is an unofficial fork.** Based on [Bill-Stewart/SyncthingWindowsSetup](https://github.com/Bill-Stewart/SyncthingWindowsSetup) (MPL-2.0), with the following additions:
+>
+> * **Visual refresh** — Inno Setup 6.6+ built-in *Polar* style (`WizardStyle=modern dynamic polar`, follows Windows light/dark) plus custom Syncthing-branded wizard artwork (light & dark variants, regenerable via `gen_artwork.py`)
+> * **Simplified Chinese localization** — full wizard UI translation (language dialog, pages, messages, WSH scripts) and a Chinese MPL-2.0 reference translation (`zh-License.rtf`, 非官方参考译文)
+> * **Per-language license fix** — license file is now extracted per selected language (`ActiveLanguage`), so Chinese users see the Chinese license page
+> * **Bundled WebUI theme** — a `modern` theme for the Syncthing web GUI (see [WebUI Theme](#webui-theme-modern) below), self-hosted HarmonyOS Sans SC font included
+>
+> Requires **Inno Setup 6.7.3+** to build (see [building.md](building.md)). Builds from this fork are unofficial; always obtain official installers from the upstream project.
+
 Syncthing Windows Setup is a lightweight yet full-featured Windows installer for the open-source [Syncthing](https://syncthing.net) file-synchronization application.
+
+---
+
+## WebUI Theme (`modern`)
+
+The [`webui-theme/`](webui-theme/) folder contains a **custom light theme for the Syncthing web GUI** (`http://127.0.0.1:8384`): white rounded cards on a soft gray-blue page, Syncthing brand-blue accents (`#0891D1`), modern tabs/inputs, and the open-source **HarmonyOS Sans SC** typeface (Apache-2.0, bundled in `webui-theme/modern/assets/fonts/`) so Chinese and Latin text render consistently.
+
+Compatible with **Syncthing v2.x** (tested on v2.1.6). The theme is a *sparse* asset override — only `theme.css` and fonts are provided; everything else falls back to the built-in default theme, so Syncthing upgrades won't break it.
+
+### Install the theme
+
+1. **Copy the theme folder** anywhere you like, e.g. `C:\syncthing-webui-theme` (keep the `modern` subfolder inside it).
+
+2. **Point Syncthing at it** by setting the `STGUIASSETS` environment variable (user level):
+
+   ```bat
+   setx STGUIASSETS "C:\syncthing-webui-theme"
+   ```
+
+3. **Restart Syncthing** (exit the running instance — including the tray/monitor process — and start it again, or restart the service/task that launches it).
+
+4. **Switch theme in the Web UI**: open the GUI → *Actions* (操作) → *Settings* (设置) → *General* (常规) → **Theme (主题)** → select **modern** → *Save*.
+
+5. Refresh the browser tab (Ctrl+F5).
+
+### Uninstall / revert
+
+Either switch the theme back to *default* in the GUI, or remove the `STGUIASSETS` variable (`reg delete "HKCU\Environment" /v STGUIASSETS /f` and restart Syncthing). The theme never modifies Syncthing itself.
+
+> 提示：主题为浅色固定配色（深色系统下仍为浅色）。如需回退，原生 *dark*/*black* 主题仍可在设置中选用。
+> 另外本主题目录为官方“资产覆盖”机制（`STGUIASSETS`），未修改任何 Syncthing 文件，升级 Syncthing 无需重新安装。
 
 ---
 

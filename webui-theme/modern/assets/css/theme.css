@@ -1,0 +1,409 @@
+@charset "UTF-8";
+/*
+ * Syncthing Web UI - "modern" custom theme (light)
+ *
+ * Structure mirrors the built-in "default" theme dispatcher:
+ *   - always imports the stock "light" base theme via the theme-assets route
+ *   - appends a modern skin on top (loaded LAST, so same-specificity rules win)
+ *
+ * Works with Syncthing v2.x. Install: point STGUIASSETS at the folder that
+ * contains this "modern/" directory, then pick theme "modern" in Settings.
+ * Missing files fall back to the embedded default theme automatically.
+ */
+
+@import "../../theme-assets/light/assets/css/theme.css";
+
+/* ================= self-hosted font: HarmonyOS Sans SC ================= */
+/* (Apache-2.0, see assets/fonts/LICENSE-HarmonyOS-Sans.txt) */
+
+@font-face {
+    font-family: "HarmonyOS Sans SC";
+    src: url("/assets/fonts/HarmonyOSSansSC-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HarmonyOS Sans SC";
+    src: url("/assets/fonts/HarmonyOSSansSC-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HarmonyOS Sans SC";
+    src: url("/assets/fonts/HarmonyOSSansSC-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ================= design tokens ================= */
+
+/* brand blue #0891D1 / hover #0679B0 / deep #056A9C
+   surface #FFFFFF / page #F4F7FA / line #E4EAF1 / text #22303C */
+
+/* ================= base ================= */
+
+body {
+    background-color: #F4F7FA !important;
+    color: #22303C !important;
+    font-family: "HarmonyOS Sans SC", "HarmonyOS Sans", -apple-system, "Segoe UI",
+        "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif !important;
+}
+
+/* form controls don't inherit fonts by default — unify everything */
+.btn, .form-control, input, select, textarea, button,
+.panel, .dropdown-menu, .modal-content, .nav-tabs, .table,
+.label, .alert, .well, .popover, .pagination {
+    font-family: "HarmonyOS Sans SC", "HarmonyOS Sans", -apple-system, "Segoe UI",
+        "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif !important;
+}
+
+/* headings: the app CSS puts Raleway first, which has no CJK glyphs — that
+   made "文件夹 (4)" render with two different typefaces (Chinese in the
+   fallback, digits/brackets in Raleway) and the numbers looked misaligned.
+   Force the whole heading family onto HarmonyOS Sans SC. */
+h1, h2, h3, h4, h5, h6,
+.navbar-brand, .panel-title, .modal-title, .dropdown-header, legend, dt {
+    font-family: "HarmonyOS Sans SC", "HarmonyOS Sans", -apple-system, "Segoe UI",
+        "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif !important;
+    line-height: 1.4;
+}
+
+a {
+    color: #0891D1 !important;
+}
+
+a:hover, a:focus {
+    color: #056A9C !important;
+}
+
+/* ================= top navbar ================= */
+
+.navbar.navbar-top {
+    background-color: #FFFFFF !important;
+    border: none !important;
+    border-bottom: 1px solid #E4EAF1 !important;
+    box-shadow: 0 1px 3px rgba(15, 40, 66, 0.04) !important;
+}
+
+.navbar.navbar-top .navbar-brand {
+    color: #0B2239 !important;
+    font-weight: 600;
+}
+
+.navbar-text,
+.dropdown > a,
+.dropdown-menu > li > a,
+.hidden-xs > a,
+.navbar-link {
+    color: #45566B !important;
+}
+
+li.hidden-xs:hover,
+li.hidden-xs:focus,
+.navbar-link:hover,
+.navbar-link:focus {
+    background-color: #F0F6FB !important;
+    color: #0B2239 !important;
+}
+
+/* ================= panels (cards) ================= */
+
+.panel {
+    background-color: #FFFFFF !important;
+    border: 1px solid #E4EAF1 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 1px 2px rgba(15, 40, 66, 0.05) !important;
+}
+
+.panel-default > .panel-heading {
+    background-color: #FFFFFF !important;
+    color: #0B2239 !important;
+    border-color: #EEF2F7 !important;
+    border-radius: 11px 11px 0 0 !important;
+}
+
+.panel-heading {
+    font-weight: 600;
+}
+
+.panel-heading:hover, .panel-heading:focus {
+    text-decoration: none;
+}
+
+.panel-footer {
+    background-color: #FAFCFE !important;
+    border-color: #EEF2F7 !important;
+    border-radius: 0 0 11px 11px !important;
+}
+
+.panel-group .panel-heading + .panel-collapse > .panel-body,
+.panel-group .panel-heading + .panel-collapse > .list-group {
+    border-top: 1px solid #EEF2F7 !important;
+}
+
+.panel-progress {
+    background: #0891D1 !important;
+}
+
+/* ================= buttons ================= */
+
+.btn {
+    border-radius: 8px !important;
+    background-image: none !important;
+    text-shadow: none !important;
+    font-weight: 500;
+    transition: background-color 0.15s ease, border-color 0.15s ease,
+        color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover, .btn:focus, .btn.focus {
+    outline: none !important;
+}
+
+.btn-default {
+    color: #3D4E61 !important;
+    background-color: #FFFFFF !important;
+    border-color: #D3DCE6 !important;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus {
+    color: #0891D1 !important;
+    background-color: #F5FBFF !important;
+    border-color: #9DD3EC !important;
+}
+
+.btn-primary {
+    color: #FFFFFF !important;
+    background-color: #0891D1 !important;
+    border-color: #0891D1 !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus {
+    color: #FFFFFF !important;
+    background-color: #0679B0 !important;
+    border-color: #0679B0 !important;
+}
+
+.btn-success {
+    color: #FFFFFF !important;
+    background-color: #2FA36B !important;
+    border-color: #2FA36B !important;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success.focus {
+    background-color: #27895A !important;
+    border-color: #27895A !important;
+}
+
+.btn-danger {
+    color: #FFFFFF !important;
+    background-color: #E5484D !important;
+    border-color: #E5484D !important;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger.focus {
+    background-color: #C93A3F !important;
+    border-color: #C93A3F !important;
+}
+
+/* ================= forms ================= */
+
+.form-control {
+    border-color: #D3DCE6 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-control:focus {
+    border-color: #38B3E8 !important;
+    box-shadow: 0 0 0 3px rgba(8, 145, 209, 0.12) !important;
+}
+
+.well,
+.form-control[readonly="readonly"],
+.popover {
+    background-color: #F6F9FC !important;
+    border-color: #E4EAF1 !important;
+    border-radius: 10px !important;
+}
+
+.help-block {
+    color: #7A8AA0 !important;
+}
+
+/* ================= tables ================= */
+
+.table > thead > tr > th {
+    color: #7A8AA0 !important;
+    font-weight: 600;
+    border-bottom: 1px solid #E4EAF1 !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #FAFCFE !important;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: #F2F8FD !important;
+}
+
+/* ================= tabs ================= */
+
+.nav-tabs {
+    border-bottom: 2px solid #E4EAF1 !important;
+}
+
+.nav-tabs > li > a {
+    color: #55677C !important;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    background-color: #F0F6FB !important;
+    border-color: transparent !important;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    color: #0891D1 !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid #0891D1 !important;
+    margin-bottom: -2px;
+    font-weight: 600;
+    cursor: default;
+}
+
+/* ================= dropdowns ================= */
+
+.dropdown-menu {
+    background-color: #FFFFFF !important;
+    border: 1px solid #E4EAF1 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 24px rgba(15, 40, 66, 0.10) !important;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    background-color: #F0F6FB !important;
+    color: #0B2239 !important;
+}
+
+.dropdown-menu > .active > a {
+    color: #FFFFFF !important;
+    background-color: #0891D1 !important;
+}
+
+.divider {
+    background-color: #EEF2F7 !important;
+}
+
+/* ================= modals ================= */
+
+.modal-content {
+    background-color: #FFFFFF !important;
+    border: 1px solid #E4EAF1 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 12px 32px rgba(15, 40, 66, 0.14) !important;
+}
+
+.modal-header {
+    border-bottom-color: #EEF2F7 !important;
+}
+
+.modal-footer {
+    background-color: #FAFCFE !important;
+    border-top-color: #EEF2F7 !important;
+    border-radius: 0 0 13px 13px !important;
+}
+
+/* status-colored modal headers (the <modal status="..."> directive renders
+   .modal-header.alert.alert-*): info was flat-ui purple #9B59B6 — recolor to
+   brand blue. success/danger headers keep their semantic colors. */
+.modal-header.alert {
+    border-radius: 13px 13px 0 0 !important;
+}
+
+.modal-header.alert-info {
+    background-color: #0891D1 !important;
+    border-color: #0891D1 !important;
+    color: #FFFFFF !important;
+}
+
+.modal-header.alert-info .close {
+    color: #FFFFFF !important;
+    text-shadow: none !important;
+    opacity: .9;
+}
+
+.modal-header.alert-info .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* ================= progress / misc ================= */
+
+.progress {
+    background-color: #E9EFF5 !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+}
+
+.progress-bar {
+    background-color: #0891D1 !important;
+}
+
+.alert {
+    border-radius: 10px !important;
+}
+
+.label {
+    border-radius: 999px !important;
+    font-weight: 600;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    color: #3D4E61 !important;
+    background-color: #FFFFFF !important;
+    border-color: #E4EAF1 !important;
+}
+
+.pagination > li > a:hover,
+.pagination > li > a:focus {
+    color: #0891D1 !important;
+    background-color: #F5FBFF !important;
+}
+
+.pagination > .active > a,
+.pagination > .active > span {
+    color: #FFFFFF !important;
+    background-color: #0891D1 !important;
+    border-color: #0891D1 !important;
+}
+
+code.ng-binding {
+    color: #B4232C !important;
+    background-color: #FDF2F3 !important;
+}
+
+/* brand-tinted identicons (keep white on warning headings) */
+.identicon rect {
+    fill: #0891D1;
+}
+
+.panel-warning .identicon rect {
+    fill: #fff;
+}
+
+.li-column {
+    background-color: #EDF3F9 !important;
+    border-radius: 6px !important;
+}
