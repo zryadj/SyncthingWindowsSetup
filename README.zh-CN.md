@@ -60,11 +60,11 @@
 
 | 主页 | 设置 |
 |:---:|:---:|
-| ![主页](webui-theme/screenshots/home.png) | ![设置](webui-theme/screenshots/settings.png) |
+| ![主页](https://cdn.jsdelivr.net/gh/zryadj/SyncthingWindowsSetup@main/webui-theme/screenshots/home.png) | ![设置](https://cdn.jsdelivr.net/gh/zryadj/SyncthingWindowsSetup@main/webui-theme/screenshots/settings.png) |
 
 | 设备标识 |
 |:---:|
-| ![设备标识](webui-theme/screenshots/device-id.png) |
+| ![设备标识](https://cdn.jsdelivr.net/gh/zryadj/SyncthingWindowsSetup@main/webui-theme/screenshots/device-id.png) |
 
 **安装步骤**：
 

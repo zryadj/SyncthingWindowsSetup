@@ -27,11 +27,11 @@ Compatible with **Syncthing v2.x** (tested on v2.1.6). The theme is a *sparse* a
 
 | Home | Settings |
 |:---:|:---:|
-| ![Home](webui-theme/screenshots/home.png) | ![Settings](webui-theme/screenshots/settings.png) |
+| ![Home](https://cdn.jsdelivr.net/gh/zryadj/SyncthingWindowsSetup@main/webui-theme/screenshots/home.png) | ![Settings](https://cdn.jsdelivr.net/gh/zryadj/SyncthingWindowsSetup@main/webui-theme/screenshots/settings.png) |
 
 | Device Identification |
 |:---:|
-| ![Device ID](webui-theme/screenshots/device-id.png) |
+| ![Device ID](https://cdn.jsdelivr.net/gh/zryadj/SyncthingWindowsSetup@main/webui-theme/screenshots/device-id.png) |
 
 ### Install the theme
 
