@@ -23,15 +23,9 @@ The [`webui-theme/`](webui-theme/) folder contains a **custom light theme for th
 
 Compatible with **Syncthing v2.x** (tested on v2.1.6). The theme is a *sparse* asset override — only `theme.css` and fonts are provided; everything else falls back to the built-in default theme, so Syncthing upgrades won't break it.
 
-### Screenshots
+### Screenshot
 
-| Home | Settings |
-|:---:|:---:|
-| ![Home](https://cdn.jsdelivr.net/gh/zryadj/SyncthingWindowsSetup@main/webui-theme/screenshots/home.png) | ![Settings](https://cdn.jsdelivr.net/gh/zryadj/SyncthingWindowsSetup@main/webui-theme/screenshots/settings.png) |
-
-| Device Identification |
-|:---:|
-| ![Device ID](https://cdn.jsdelivr.net/gh/zryadj/SyncthingWindowsSetup@main/webui-theme/screenshots/device-id.png) |
+![Home](https://cdn.jsdelivr.net/gh/zryadj/SyncthingWindowsSetup@main/webui-theme/screenshots/home.png)
 
 ### Install the theme
 
